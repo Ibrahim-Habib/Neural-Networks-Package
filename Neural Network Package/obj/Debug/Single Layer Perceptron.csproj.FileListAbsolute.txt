@@ -1,0 +1,13 @@
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\bin\Debug\GUI.resx
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\bin\Debug\GUI.cs
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\bin\Debug\GUI.Designer.cs
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\bin\Debug\Neural Network Package.exe.config
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\bin\Debug\Neural Network Package.exe
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\bin\Debug\Neural Network Package.pdb
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Neural_Network_Package.GUI.resources
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Neural_Network_Package.Properties.Resources.resources
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Single Layer Perceptron.csproj.GenerateResource.Cache
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Neural Network Package.exe
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Neural Network Package.pdb
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Single Layer Perceptron.csprojResolveAssemblyReference.cache
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Neural_Network_Package.ConfusionMatrixForm.resources
