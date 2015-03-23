@@ -16,7 +16,7 @@ namespace Neural_Network_Package
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI());
+            Application.Run(new Single_layer_perceptron_GUI());
         }
     }
 }

@@ -51,23 +51,26 @@
     <Compile Include="ConfusionMatrixGUI.Designer.cs">
       <DependentUpon>ConfusionMatrixGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI.cs">
+    <Compile Include="MainWindowGUI.cs">
       <SubType>Form</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="GUI.Designer.cs">
-      <DependentUpon>GUI.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Compile Include="MainWindowGUI.Designer.cs">
+      <DependentUpon>MainWindowGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Single_Layer_Perceptron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Single_layer_perceptron_GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Single_layer_perceptron_GUI.Designer.cs">
+      <DependentUpon>Single_layer_perceptron_GUI.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ConfusionMatrixGUI.resx">
       <DependentUpon>ConfusionMatrixGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI.resx">
-      <DependentUpon>GUI.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <EmbeddedResource Include="MainWindowGUI.resx">
+      <DependentUpon>MainWindowGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -78,6 +81,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Single_layer_perceptron_GUI.resx">
+      <DependentUpon>Single_layer_perceptron_GUI.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

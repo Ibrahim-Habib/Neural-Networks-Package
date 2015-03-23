@@ -13,8 +13,11 @@ namespace Neural_Network_Package
     public partial class ConfusionMatrixForm : Form
     {
         public int[][] confusionMatrix;
-        public int firstClassIndex, secondClassIndex;
+        public string firstClassName, secondClassName;
         double overallAccuracy;
+        int numClasses;
+        string[] className;
+        int[] classIndex;
         public ConfusionMatrixForm()
         {
             InitializeComponent();
@@ -23,17 +26,15 @@ namespace Neural_Network_Package
         public void setData()
         {
             ConfusionMatrixGridView.Columns.Add("", "");
-            ConfusionMatrixGridView.Columns.Add("setosa", "setosa");
-            ConfusionMatrixGridView.Columns.Add("versicolor", "versicolor");
-            ConfusionMatrixGridView.Columns.Add("virginica", "virginica");
-            ConfusionMatrixGridView.Rows.Add(3);
-            ConfusionMatrixGridView[0, 0].Value = "setosa";
-            ConfusionMatrixGridView[0, 1].Value = "versicolor";
-            ConfusionMatrixGridView[0, 2].Value = "virginica";
+            ConfusionMatrixGridView.Columns.Add(firstClassName, firstClassName);
+            ConfusionMatrixGridView.Columns.Add(secondClassName, secondClassName);
+            ConfusionMatrixGridView.Rows.Add(2);
+            ConfusionMatrixGridView[0, 0].Value = firstClassName;
+            ConfusionMatrixGridView[0, 1].Value = secondClassName;
             int correctCount = 0, allCount = 0;
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < 2; row++)
             {
-                for (int col = 1; col < 4; col++)
+                for (int col = 1; col < 3; col++)
                 {
                     ConfusionMatrixGridView[col, row].Value = confusionMatrix[row][col - 1];
                     allCount += confusionMatrix[row][col - 1];

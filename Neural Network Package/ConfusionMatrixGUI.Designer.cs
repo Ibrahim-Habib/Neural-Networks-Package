@@ -40,13 +40,13 @@
             this.ConfusionMatrixGridView.Location = new System.Drawing.Point(2, 3);
             this.ConfusionMatrixGridView.Name = "ConfusionMatrixGridView";
             this.ConfusionMatrixGridView.ReadOnly = true;
-            this.ConfusionMatrixGridView.Size = new System.Drawing.Size(325, 256);
+            this.ConfusionMatrixGridView.Size = new System.Drawing.Size(343, 257);
             this.ConfusionMatrixGridView.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(349, 46);
+            this.label1.Location = new System.Drawing.Point(361, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 1;
@@ -54,7 +54,7 @@
             // 
             // overallAccuracyTextBox
             // 
-            this.overallAccuracyTextBox.Location = new System.Drawing.Point(352, 62);
+            this.overallAccuracyTextBox.Location = new System.Drawing.Point(361, 62);
             this.overallAccuracyTextBox.Name = "overallAccuracyTextBox";
             this.overallAccuracyTextBox.ReadOnly = true;
             this.overallAccuracyTextBox.Size = new System.Drawing.Size(85, 20);

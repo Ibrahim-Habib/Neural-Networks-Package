@@ -94,7 +94,7 @@ namespace Neural_Network_Package
                 x1x3Graph.Series[i].Points.Clear();
                 x1x4Graph.Series[i].Points.Clear();
                 x2x3Graph.Series[i].Points.Clear();
-                x2x4Graph.Series[i].Points.Clear();
+                x2x4Graph.Series[i].Points.Clear(); 
                 x3x4Graph.Series[i].Points.Clear();
             }
             //draw the graphs
@@ -230,8 +230,6 @@ namespace Neural_Network_Package
                 confusionMatrix[testingSetClasses[i]][classificationRes[i]]++;
             }
             ConfusionMatrixForm CFM = new ConfusionMatrixForm();
-            CFM.firstClassIndex = firstClass;
-            CFM.secondClassIndex = secondClass;
             CFM.confusionMatrix = confusionMatrix;
             CFM.setData();
             CFM.Show();
