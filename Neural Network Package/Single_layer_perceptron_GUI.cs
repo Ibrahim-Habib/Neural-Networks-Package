@@ -14,7 +14,6 @@ namespace Neural_Network_Package
     public partial class Single_layer_perceptron_GUI : Form
     {
         int[][] confusionMatrix;
-        double[] allData;
         double[][] setosa;
         double[][] versicolor;
         double[][] virginica;
@@ -26,7 +25,7 @@ namespace Neural_Network_Package
         int[] testingSetClassificationResult;
         int firstFeatureIndex, secondFeatureIndex;
         Dictionary<double, double> normalized;
-        int firstClass, secondClass;
+        int firstClassIndex, secondClassIndex;
         string firstClassName, secondClassName;
         int trainingCount = 30, testingCount = 20;
         Single_Layer_Perceptron perceptron;
@@ -34,74 +33,57 @@ namespace Neural_Network_Package
         public Single_layer_perceptron_GUI()
         {
             InitializeComponent();
-            ClassesToClassifyComboBox.SelectedIndex = 2;
+            ClassesToClassifyComboBox.SelectedIndex = 0;
             firstFeatureCompoBox.SelectedIndex = 0;
-            secondFeatureComboBox.SelectedIndex = 3;
+            secondFeatureComboBox.SelectedIndex = 1;
             drawCharts();
         }
 
         public void drawCharts()
         {
-            FileStream FS = new FileStream("Iris Data.txt", FileMode.Open);
-            StreamReader SR = new StreamReader(FS);
-            string line;
-            string[] numbers;
-            setosa = new double[4][];
-            versicolor = new double[4][];
-            virginica = new double[4][];
-            for (int i = 0; i < 4; i++)
+            helperClass.readIrisFiles(ref setosa, ref versicolor,ref virginica);
+            double[][] allData;
+            allData = new double[setosa.Length + versicolor.Length + virginica.Length][];
+            for (int i = 0; i < allData.Length; i++)
             {
-                setosa[i] = new double[50];
-                versicolor[i] = new double[50];
-                virginica[i] = new double[50];
-            }
-            SR.ReadLine();
-            allData = new double[600];
-            int curIndex = 0;
-            //read setosa data
-            for (int i = 0; i < 50; i++)
-            {
-                line = SR.ReadLine();
-                numbers = line.Split(',');
+                allData[i] = new double[4];
                 for (int j = 0; j < 4; j++)
                 {
-                    setosa[j][i] = double.Parse(numbers[j]);
-                    allData[curIndex++] = setosa[j][i];
-                }
-            }
-            //read versicolor data
-            for (int i = 0; i < 50; i++)
-            {
-                line = SR.ReadLine();
-                numbers = line.Split(',');
-                for (int j = 0; j < 4; j++)
-                {
-                    versicolor[j][i] = double.Parse(numbers[j]);
-                    allData[curIndex++] = versicolor[j][i];
+                    if (i < setosa.Length)
+                    {
+                        allData[i][j] = setosa[i][j];
+                    }
+                    else if (i >= setosa.Length && i < setosa.Length + versicolor.Length)
+                    {
+                        allData[i][j] = versicolor[i - setosa.Length][j];
+                    }
+                    else
+                    {
+                        allData[i][j] = virginica[i - setosa.Length - versicolor.Length][j];
+                    }
                 }
             }
 
-            //read virginica data
+            helperClass.normalize(ref allData);
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < allData.Length; i++)
             {
-                line = SR.ReadLine();
-                numbers = line.Split(',');
                 for (int j = 0; j < 4; j++)
                 {
-                    virginica[j][i] = double.Parse(numbers[j]);
-                    allData[curIndex++] = virginica[j][i];
+                    if (i < setosa.Length)
+                    {
+                        setosa[i][j] = allData[i][j];
+                    }
+                    else if (i >= setosa.Length && i < setosa.Length + versicolor.Length)
+                    {
+                        versicolor[i - setosa.Length][j] = allData[i][j];
+                    }
+                    else
+                    {
+                        virginica[i - setosa.Length - versicolor.Length][j] = allData[i][j];
+                    }
                 }
             }
-
-            SR.Close();
-            FS.Close();
-
-            for (int i = 0; i < 4; i++)
-            { 
-                
-            }
-            //normalize(ref allData);
 
             //clear the graphs
             for (int i = 0; i < 4; i++)
@@ -124,36 +106,36 @@ namespace Neural_Network_Package
             //draw the graphs
             for (int k = 0; k < 50; k++)
             {
-                x1x2Chart.Series["setosa"].Points.AddXY(setosa[0][k], setosa[1][k]);
-                x1x3Chart.Series["setosa"].Points.AddXY(setosa[0][k], setosa[2][k]);
-                x1x4Chart.Series["setosa"].Points.AddXY(setosa[0][k], setosa[3][k]);
-                x2x3Chart.Series["setosa"].Points.AddXY(setosa[1][k], setosa[2][k]);
-                x2x4Chart.Series["setosa"].Points.AddXY(setosa[1][k], setosa[3][k]);
-                x3x4Chart.Series["setosa"].Points.AddXY(setosa[2][k], setosa[3][k]);
+                x1x2Chart.Series["setosa"].Points.AddXY(setosa[k][0], setosa[k][1]);
+                x1x3Chart.Series["setosa"].Points.AddXY(setosa[k][0], setosa[k][2]);
+                x1x4Chart.Series["setosa"].Points.AddXY(setosa[k][0], setosa[k][3]);
+                x2x3Chart.Series["setosa"].Points.AddXY(setosa[k][1], setosa[k][2]);
+                x2x4Chart.Series["setosa"].Points.AddXY(setosa[k][1], setosa[k][3]);
+                x3x4Chart.Series["setosa"].Points.AddXY(setosa[k][2], setosa[k][3]);
 
-                x1x2Chart.Series["versicolor"].Points.AddXY(versicolor[0][k], versicolor[1][k]);
-                x1x3Chart.Series["versicolor"].Points.AddXY(versicolor[0][k], versicolor[2][k]);
-                x1x4Chart.Series["versicolor"].Points.AddXY(versicolor[0][k], versicolor[3][k]);
-                x2x3Chart.Series["versicolor"].Points.AddXY(versicolor[1][k], versicolor[2][k]);
-                x2x4Chart.Series["versicolor"].Points.AddXY(versicolor[1][k], versicolor[3][k]);
-                x3x4Chart.Series["versicolor"].Points.AddXY(versicolor[2][k], versicolor[3][k]);
+                x1x2Chart.Series["versicolor"].Points.AddXY(versicolor[k][0], versicolor[k][1]);
+                x1x3Chart.Series["versicolor"].Points.AddXY(versicolor[k][0], versicolor[k][2]);
+                x1x4Chart.Series["versicolor"].Points.AddXY(versicolor[k][0], versicolor[k][3]);
+                x2x3Chart.Series["versicolor"].Points.AddXY(versicolor[k][1], versicolor[k][2]);
+                x2x4Chart.Series["versicolor"].Points.AddXY(versicolor[k][1], versicolor[k][3]);
+                x3x4Chart.Series["versicolor"].Points.AddXY(versicolor[k][2], versicolor[k][3]);
 
-                x1x2Chart.Series["virginica"].Points.AddXY(virginica[0][k], virginica[1][k]);
-                x1x3Chart.Series["virginica"].Points.AddXY(virginica[0][k], virginica[2][k]);
-                x1x4Chart.Series["virginica"].Points.AddXY(virginica[0][k], virginica[3][k]);
-                x2x3Chart.Series["virginica"].Points.AddXY(virginica[1][k], virginica[2][k]);
-                x2x4Chart.Series["virginica"].Points.AddXY(virginica[1][k], virginica[3][k]);
-                x3x4Chart.Series["virginica"].Points.AddXY(virginica[2][k], virginica[3][k]);
+                x1x2Chart.Series["virginica"].Points.AddXY(virginica[k][0], virginica[k][1]);
+                x1x3Chart.Series["virginica"].Points.AddXY(virginica[k][0], virginica[k][2]);
+                x1x4Chart.Series["virginica"].Points.AddXY(virginica[k][0], virginica[k][3]);
+                x2x3Chart.Series["virginica"].Points.AddXY(virginica[k][1], virginica[k][2]);
+                x2x4Chart.Series["virginica"].Points.AddXY(virginica[k][1], virginica[k][3]);
+                x3x4Chart.Series["virginica"].Points.AddXY(virginica[k][2], virginica[k][3]);
 
                 for (int z = 0; z < 3; z++)
                 {
-                    minX[z] = Math.Min(minX[z], setosa[z][k]);
-                    minX[z] = Math.Min(minX[z], versicolor[z][k]);
-                    minX[z] = Math.Min(minX[z], virginica[z][k]);
+                    minX[z] = Math.Min(minX[z], setosa[k][z]);
+                    minX[z] = Math.Min(minX[z], versicolor[k][z]);
+                    minX[z] = Math.Min(minX[z], virginica[k][z]);
 
-                    maxX[z] = Math.Max(maxX[z], setosa[z][k]);
-                    maxX[z] = Math.Max(maxX[z], versicolor[z][k]);
-                    maxX[z] = Math.Max(maxX[z], virginica[z][k]);
+                    maxX[z] = Math.Max(maxX[z], setosa[k][z]);
+                    maxX[z] = Math.Max(maxX[z], versicolor[k][z]);
+                    maxX[z] = Math.Max(maxX[z], virginica[k][z]);
                 }
                  
              }
@@ -173,23 +155,22 @@ namespace Neural_Network_Package
    
             if (ClassesToClassifyComboBox.Text == "setosa and versicolor")
             {
-                firstClass = 0;
-                secondClass = 1;
+                firstClassIndex = 0;
+                secondClassIndex = 1;
                 firstClassName = "setosa";
-                secondClassName = "versicolor";
-               
+                secondClassName = "versicolor";   
             }
             else if (ClassesToClassifyComboBox.Text == "setosa and virginica")
             {
-                firstClass = 0;
-                secondClass = 2;
+                firstClassIndex = 0;
+                secondClassIndex = 2;
                 firstClassName = "setosa";
                 secondClassName = "virginica";
             }
             else
             {
-                firstClass = 1;
-                secondClass = 2;
+                firstClassIndex = 1;
+                secondClassIndex = 2;
                 firstClassName = "versicolor";
                 secondClassName = "virginica";
             }
@@ -202,77 +183,47 @@ namespace Neural_Network_Package
                 X[sample] = new double[2];
                 if (sample < countToFill)
                 {
-                    classes[sample] = firstClass;
-                    if (firstClass == 0)
+                    classes[sample] = firstClassIndex;
+                    if (firstClassIndex == 0)
                     {
-                        X[sample][0] = setosa[firstFeatureIndex][startIndex + sample];
-                        X[sample][1] = setosa[secondFeatureIndex][startIndex + sample];       
+                        X[sample][0] = setosa[startIndex + sample][firstFeatureIndex];
+                        X[sample][1] = setosa[startIndex + sample][secondFeatureIndex];       
                     }
-                    else if (firstClass == 1)
+                    else if (firstClassIndex == 1)
                     {
-                        X[sample][0] = versicolor[firstFeatureIndex][startIndex + sample];
-                        X[sample][1] = versicolor[secondFeatureIndex][startIndex + sample];
+                        X[sample][0] = versicolor[startIndex + sample][firstFeatureIndex];
+                        X[sample][1] = versicolor[startIndex + sample][secondFeatureIndex];
                 
                     }
                     else
                     {
-                        X[sample][0] = virginica[firstFeatureIndex][startIndex + sample];
-                        X[sample][1] = virginica[secondFeatureIndex][startIndex + sample];
+                        X[sample][0] = virginica[startIndex + sample][firstFeatureIndex];
+                        X[sample][1] = virginica[startIndex + sample][secondFeatureIndex];
                    
                     }
 
-                    //for (int feature = 0; feature < 2; feature++)
-                    //{
-                    //    if (firstClass == 0)
-                    //    {
-                    //        X[sample][feature] = normalized[setosa[startIndex + sample][feature]];
-                    //    }
-                    //    else if (firstClass == 1)
-                    //    {
-                    //        X[sample][feature] = normalized[versicolor[startIndex + sample][feature]];
-                    //    }
-                    //    else
-                    //    {
-                    //        X[sample][feature] = normalized[virginica[startIndex + sample][feature]];
-                    //    }
-                    //}
                 }
                 else
                 {
-                    classes[sample] = secondClass;
+                    classes[sample] = secondClassIndex;
                    
-                    if (secondClass == 0)
+                    if (secondClassIndex == 0)
                     {
-                        X[sample][0] = setosa[firstFeatureIndex][startIndex + sample - countToFill];
-                        X[sample][1] = setosa[secondFeatureIndex][startIndex + sample - countToFill];
+                        X[sample][0] = setosa[startIndex + sample - countToFill][firstFeatureIndex];
+                        X[sample][1] = setosa[startIndex + sample - countToFill][secondFeatureIndex];
                     }
-                    else if (secondClass == 1)
+                    else if (secondClassIndex == 1)
                     {
-                        X[sample][0] = versicolor[firstFeatureIndex][startIndex + sample - countToFill];
-                        X[sample][1] = versicolor[secondFeatureIndex][startIndex + sample - countToFill];
+                        X[sample][0] = versicolor[startIndex + sample - countToFill][firstFeatureIndex];
+                        X[sample][1] = versicolor[startIndex + sample - countToFill][secondFeatureIndex];
 
                     }
                     else
                     {
-                        X[sample][0] = virginica[firstFeatureIndex][startIndex + sample - countToFill];
-                        X[sample][1] = virginica[secondFeatureIndex][startIndex + sample - countToFill];
+                        X[sample][0] = virginica[startIndex + sample - countToFill][firstFeatureIndex];
+                        X[sample][1] = virginica[startIndex + sample - countToFill][secondFeatureIndex];
                     }
-                    //for (int feature = 0; feature < 4; feature++)
-                    //{
-                    //    if (secondClass == 0)
-                    //    {
-                    //        X[sample][feature] = normalized[setosa[startIndex + sample - countToFill][feature]];
-                    //    }
-                    //    else if (secondClass == 1)
-                    //    {
-                    //        X[sample][feature] = normalized[versicolor[startIndex + sample - countToFill][feature]];
-                    //    }
-                    //    else
-                    //    {
-                    //        X[sample][feature] = normalized[virginica[startIndex + sample - countToFill][feature]];
-                    //    }
-                    //}
-
+                
                 }
 
             }
@@ -282,7 +233,7 @@ namespace Neural_Network_Package
         private void startTrainingTextBox_Click(object sender, EventArgs e)
         {
             assignClasses();
-            perceptron = new Single_Layer_Perceptron(2, 0.47, 300, firstClass, secondClass, 0.001);
+            perceptron = new Single_Layer_Perceptron(2, 0.47, 300, firstClassIndex, secondClassIndex, 0.001);
             trainingSetClasses = new int[trainingCount * 2];
             trainingSet = new double[trainingCount * 2][];
             for (int i = 0; i < trainingSet.Length; i++)
@@ -346,20 +297,20 @@ namespace Neural_Network_Package
             //to ensure that classes indices fits the confusion matrix indices
             for (int i = 0; i < testingSetClassificationResult.Length; i++)
             {
-                if (testingSetClasses[i] == firstClass)
+                if (testingSetClasses[i] == firstClassIndex)
                 {
                     testingSetClasses[i] = 0;
                 }
-                if (testingSetClasses[i] == secondClass)
+                if (testingSetClasses[i] == secondClassIndex)
                 {
                     testingSetClasses[i] = 1;
                 }
 
-                if (testingSetClassificationResult[i] == firstClass)
+                if (testingSetClassificationResult[i] == firstClassIndex)
                 {
                     testingSetClassificationResult[i] = 0;
                 }
-                if (testingSetClassificationResult[i] == secondClass)
+                if (testingSetClassificationResult[i] == secondClassIndex)
                 {
                     testingSetClassificationResult[i] = 1;
                 }
@@ -481,11 +432,18 @@ namespace Neural_Network_Package
             feature[0] = x;
             feature[1] = y;
             int classificationRes = perceptron.testSingle(feature);
-            if (classificationRes == firstClass)
+            if (classificationRes == firstClassIndex)
                 ret = firstClassName;
             else 
                 ret = secondClassName;
             return ret;
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            MainWindowGUI mwGUI = new MainWindowGUI();
+            mwGUI.Show();
+            this.Visible = false;
         }
 
     }

@@ -28,44 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.LMSButton = new System.Windows.Forms.Button();
+            this.BPButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // LMSButton
             // 
-            this.button1.Location = new System.Drawing.Point(303, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Least Mean Square Algorithm";
-            this.button1.UseVisualStyleBackColor = true;
+            this.LMSButton.Location = new System.Drawing.Point(99, 70);
+            this.LMSButton.Name = "LMSButton";
+            this.LMSButton.Size = new System.Drawing.Size(159, 36);
+            this.LMSButton.TabIndex = 0;
+            this.LMSButton.Text = "Least Mean Square Algorithm";
+            this.LMSButton.UseVisualStyleBackColor = true;
+            this.LMSButton.Click += new System.EventHandler(this.LMSButton_Click);
             // 
-            // button2
+            // BPButton
             // 
-            this.button2.Location = new System.Drawing.Point(324, 128);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 99);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Back-propagation Learning Algorithm";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BPButton.Location = new System.Drawing.Point(121, 112);
+            this.BPButton.Name = "BPButton";
+            this.BPButton.Size = new System.Drawing.Size(115, 99);
+            this.BPButton.TabIndex = 1;
+            this.BPButton.Text = "Back-propagation Learning Algorithm";
+            this.BPButton.UseVisualStyleBackColor = true;
+            this.BPButton.Click += new System.EventHandler(this.BPButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tw Cen MT", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(37, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(303, 31);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Neural Networks Package";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainWindowGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 308);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(374, 309);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.BPButton);
+            this.Controls.Add(this.LMSButton);
             this.Name = "MainWindowGUI";
-            this.Text = "MainWindowGUI";
+            this.Text = "Main Window";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button LMSButton;
+        private System.Windows.Forms.Button BPButton;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -16,5 +16,18 @@ namespace Neural_Network_Package
         {
             InitializeComponent();
         }
+
+        private void LMSButton_Click(object sender, EventArgs e)
+        {
+            //Application.Run(new Single_layer_perceptron_GUI());
+            Single_layer_perceptron_GUI GUI = new Single_layer_perceptron_GUI();
+            GUI.Show();
+            this.Visible = false;
+        }
+
+        private void BPButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

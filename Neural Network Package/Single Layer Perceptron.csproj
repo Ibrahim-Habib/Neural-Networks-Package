@@ -51,12 +51,14 @@
     <Compile Include="ConfusionMatrixGUI.Designer.cs">
       <DependentUpon>ConfusionMatrixGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="helperClass.cs" />
     <Compile Include="MainWindowGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainWindowGUI.Designer.cs">
       <DependentUpon>MainWindowGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="MultiLayerPerceptron.cs" />
     <Compile Include="Single_Layer_Perceptron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +100,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
