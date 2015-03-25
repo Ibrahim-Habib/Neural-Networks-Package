@@ -11,7 +11,7 @@ namespace Neural_Network_Package
     {
         public static void readIrisFiles(ref double[][] setosa, ref double[][] versicolor, ref double[][] virginica)
         {
-            FileStream FS = new FileStream("D:\\FCIS\\4th year\\Second Term\\Neural Networks\\Labs\\Lab 2 - SLP\\Iris Data.txt", FileMode.Open);
+            FileStream FS = new FileStream("Iris Data.txt", FileMode.Open);
             StreamReader SR = new StreamReader(FS);
             string line;
             string[] numbers;
