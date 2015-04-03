@@ -441,9 +441,8 @@ namespace Neural_Network_Package
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            MainWindowGUI mwGUI = new MainWindowGUI();
-            mwGUI.Show();
             this.Visible = false;
+            helperClass.mainWindow.Visible = true;
         }
 
     }

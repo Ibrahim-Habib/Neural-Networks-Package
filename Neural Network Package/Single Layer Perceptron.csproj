@@ -59,6 +59,7 @@
       <DependentUpon>MainWindowGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="MultiLayerPerceptron.cs" />
+    <Compile Include="Multi_Layer_Perceptron.cs" />
     <Compile Include="Single_Layer_Perceptron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

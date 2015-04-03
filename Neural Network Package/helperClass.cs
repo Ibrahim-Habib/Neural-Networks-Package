@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Neural_Network_Package
 {
     static class helperClass
     {
+        public static Form mainWindow;
+        public static Form SLP_GUI;
         public static void readIrisFiles(ref double[][] setosa, ref double[][] versicolor, ref double[][] virginica)
         {
             FileStream FS = new FileStream("Iris Data.txt", FileMode.Open);
@@ -65,19 +68,36 @@ namespace Neural_Network_Package
 
         public static void normalize(ref double[][] data)
         {
+            double[] mean = new double[data[0].Length];
             double[] maxi = new double[data[0].Length];
             for (int i = 0; i < maxi.Length; i++)
             {
                 maxi[i] = double.MinValue;
+                mean[i] = 0;
             }
 
             for (int i = 0; i < data.Length; i++)
             {
                 for (int j = 0; j < data[i].Length; j++)
                 {
+                    mean[j] += data[i][j];
+                }
+            }
+
+            for (int i = 0; i < data[0].Length; i++)
+            {
+                mean[i] /= data.Length;
+            }
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                for (int j = 0; j < data[i].Length; j++)
+                {
+                    data[i][j] -= mean[j];
                     maxi[j] = Math.Max(maxi[j], Math.Abs(data[i][j]));
                 }
             }
+
 
             for (int i = 0; i < data.Length; i++)
             {

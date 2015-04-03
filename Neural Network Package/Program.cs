@@ -16,7 +16,10 @@ namespace Neural_Network_Package
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindowGUI());
+            helperClass.mainWindow = new MainWindowGUI();
+            Application.Run(helperClass.mainWindow);
+            helperClass.SLP_GUI.Close();
+            helperClass.mainWindow.Close();
         }
     }
 }
