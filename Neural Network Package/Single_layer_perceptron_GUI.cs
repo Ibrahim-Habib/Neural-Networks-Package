@@ -324,10 +324,11 @@ namespace Neural_Network_Package
                 confusionMatrix[testingSetClasses[i]][testingSetClassificationResult[i]]++;
             }
             ConfusionMatrixForm CFM = new ConfusionMatrixForm();
-            CFM.firstClassName = this.firstClassName;
-            CFM.secondClassName = this.secondClassName;
+            string[] names = new string[2];
+            names[0] = this.firstClassName;
+            names[1] = this.secondClassName;
             CFM.confusionMatrix = confusionMatrix;
-            CFM.setData();
+            CFM.setData(names);
             CFM.Show();
         }
 

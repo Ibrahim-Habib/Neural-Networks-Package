@@ -31,7 +31,9 @@ namespace Neural_Network_Package
 
         private void BPButton_Click(object sender, EventArgs e)
         {
-
+            helperClass.MLP_GUI = new Multi_Layer_Perceptron_GUI();
+            helperClass.MLP_GUI.Show();
+            this.Visible = false;
         }
     }
 }

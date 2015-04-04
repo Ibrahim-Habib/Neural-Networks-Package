@@ -20,6 +20,7 @@ namespace Neural_Network_Package
             Application.Run(helperClass.mainWindow);
             helperClass.SLP_GUI.Close();
             helperClass.mainWindow.Close();
+            helperClass.MLP_GUI.Close();
         }
     }
 }

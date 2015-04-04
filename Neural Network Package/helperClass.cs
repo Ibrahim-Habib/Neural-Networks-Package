@@ -12,6 +12,7 @@ namespace Neural_Network_Package
     {
         public static Form mainWindow;
         public static Form SLP_GUI;
+        public static Form MLP_GUI;
         public static void readIrisFiles(ref double[][] setosa, ref double[][] versicolor, ref double[][] virginica)
         {
             FileStream FS = new FileStream("Iris Data.txt", FileMode.Open);

@@ -9,3 +9,4 @@ D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural
 D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Single Layer Perceptron.csproj.GenerateResource.Cache
 D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Neural Network Package.exe
 D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Neural Network Package.pdb
+D:\FCIS\4th year\Second Term\Neural Networks\Tasks\Neural Network Package\Neural Network Package\obj\Debug\Neural_Network_Package.Multi_Layer_Perceptron_GUI.resources
